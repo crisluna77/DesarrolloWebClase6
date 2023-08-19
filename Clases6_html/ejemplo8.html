@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>manejo de errores usando catch</title>
+
+    <script>
+        function hayONoHay() {
+            return new Promise((resolve, reject) => {
+                const val = Math.round(Math.random() * 1); // 0 o 1, generación de random
+
+                val ? resolve('Suertudo!!') : reject('NO! 😠');
+            });
+        }
+
+        // async function msg() {
+        //     try {
+        //         const msg = await hayONoHay();
+        //         console.log(msg);
+        //     } catch (err) {
+        //         console.log(err);
+        //     }
+        // }
+
+
+        async function msg() {
+            const msg = await hayONoHay();
+            console.log(msg);
+        }
+
+        msg().catch(x => console.log(x)); //control de errores
+
+        msg(); //sin control de errores
+        msg();
+        msg();
+        msg();
+        msg();
+        msg();
+        msg();
+        msg();
+        msg();
+        msg();
+        msg();
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

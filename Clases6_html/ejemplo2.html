@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplo 2</title>
+    <script>
+    function quien() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('🤡');  
+    }, 200);
+  });
+}
+
+function que() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('lurks');
+    }, 300);
+  });
+}
+
+function donde() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('en las sombras');
+    }, 500);
+  });
+}
+
+async function msg() {
+  const a = await quien();
+  const b = await que();
+  const c = await donde();
+
+  //se ejecuta cuando todos los await se resuelven
+  console.log(`${ a } ${ b } ${ c }`);
+}
+
+msg(); // 🤡 lurks in the shadows <-- after 1 second</script>
+</head>
+<body>
+    
+</body>
+</html>

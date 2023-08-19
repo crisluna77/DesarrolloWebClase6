@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplo 6</title>
+<script>
+function pallasito() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('🤡');
+    }, 2000);
+  });
+}
+
+async function msg() {
+  const msg = await pallasito();
+  console.log('Mensaje:', msg);
+}
+
+
+
+//declarada como funcion:
+const msgFuncion = async function() {
+  const msg = await pallasito();
+  console.log('Mensaje:', msg);
+}
+
+
+//definida como función de flecha
+const msgFlecha = async () => {
+  const msg = await pallasito();
+  console.log('Mensaje:', msg);
+}
+
+
+
+//msg();
+//msgFuncion();
+msgFlecha();
+
+
+
+</script>
+
+</head>
+<body>
+    
+</body>
+</html>

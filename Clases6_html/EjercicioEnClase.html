@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulación de Carga de Archivos Asincrónica</title>
+</head>
+<body>
+  <h1>Simulación de Carga de Archivos Asincrónica</h1>
+  <p>Enseñar cómo utilizar async/await para simular un proceso asincrónico de carga de archivos y cómo manejar promesas en una secuencia de tareas.</p>
+
+  <script>
+    // Función para simular la selección de un archivo
+    function seleccionarArchivo() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const archivoSeleccionado = "archivo.txt"; // Nombre de archivo simulado
+          resolve(archivoSeleccionado);
+        }, Math.random() * 2000);
+      });
+    }
+
+    // Función para simular la verificación de formato
+    function verificarFormato(nombreArchivo) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const esFormatoValido = nombreArchivo.endsWith(".mp4"); // Verificación de formato simulada
+          resolve(esFormatoValido);
+        }, Math.random() * 2000);
+      });
+    }
+
+    // Función para simular la verificación de tamaño
+    function verificarTamaño(nombreArchivo, esFormatoValido) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const esTamañoAceptable = esFormatoValido && Math.random() > 0.05; // Verificación de tamaño simulada
+          resolve(esTamañoAceptable);
+        }, Math.random() * 2000);
+      });
+    }
+
+    // Función para simular la carga de archivo
+    function cargarArchivo(nombreArchivo, esTamañoAceptable) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (esTamañoAceptable) {
+            resolve('El archivo ${nombreArchivo} se ha cargado exitosamente.');
+          } else {
+            reject('El archivo ${nombreArchivo} no se pudo cargar debido al tamaño.');
+          }
+        }, Math.random() * 2000);
+      });
+    }
+
+    // Función principal asincrónica para encadenar las tareas
+    async function procesoCargaArchivos() {
+      try {
+        const archivoSeleccionado = await seleccionarArchivo();
+        console.log('Archivo seleccionado: ${archivoSeleccionado}');
+        
+        const esFormatoValido = await verificarFormato(archivoSeleccionado);
+        console.log('Formato válido: ${esFormatoValido}');
+        
+        const esTamañoAceptable = await verificarTamaño(archivoSeleccionado, esFormatoValido);
+        console.log('Tamaño aceptable: ${esTamañoAceptable}');
+        
+        const resultadoCarga = await cargarArchivo(archivoSeleccionado, esTamañoAceptable);
+        console.log(resultadoCarga);
+      } catch (error) {
+        console.error("Error durante el proceso de carga:", error);
+      }
+    }
+
+    // Iniciar el proceso al cargar la página
+    procesoCargaArchivos();
+  </script>
+</body>
+</html>
